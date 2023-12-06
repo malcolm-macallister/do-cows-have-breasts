@@ -142,4 +142,12 @@ const IndexPage: React.FC<PageProps> = () => {
 
 export default IndexPage;
 
-export const Head: HeadFC = () => <title>🐄 Do Cows Have Breasts?</title>;
+export const Head: HeadFC = () => (
+  <>
+    <title>Do Cows Have Breasts?</title>
+    <link
+      rel="icon"
+      href="https://images.emojiterra.com/google/noto-emoji/unicode-15.1/color/svg/1f404.svg"
+    />{" "}
+  </>
+);
