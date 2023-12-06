@@ -1,26 +1,21 @@
 import * as React from "react";
-import { HeadFC, PageProps, graphql } from "gatsby";
+import { HeadFC, PageProps, graphql, useStaticQuery } from "gatsby";
 import { useState, useEffect } from "react";
 import Img from "gatsby-image";
 import "./index.css";
+import bg from "../images/cow-background.png";
 
-/*export const query = graphql`
-  query {
-    file(relativePath: { eq: "src/images/cow-background.png" }) {
-      cowthing {
-        # Specify the image processing specifications right in the query.
-        # Makes it trivial to update as your page's design changes.
-        fixed(width: 400) {
-          base64
-          width
-          height
-          src
-          srcSet
+/*const data = useStaticQuery(graphql`
+    query {
+      test: file(relativePath: { eq: "src/images/cow-background.png" }) {
+        childImageSharp {
+          fluid(maxWidth: 3160, quality: 80) {
+            ...GatsbyImageSharpFluid_withWebp
+          }
         }
       }
     }
-  }
-`;
+  `);
 */
 
 const IndexPage: React.FC<PageProps> = () => {
@@ -32,7 +27,7 @@ const IndexPage: React.FC<PageProps> = () => {
   const [activeStylingQ5, setActiveStylingQ5] = useState<boolean>(false);
 
   return (
-    <>
+    <><img src={bg} alt="Logo" />;
       <div className="flex flex-col text-main-font background">
         <div className="flex flex-row place-content-evenly mx-20 mt-28 font-light">
           <button
