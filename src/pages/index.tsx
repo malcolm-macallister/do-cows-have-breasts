@@ -29,7 +29,7 @@ const IndexPage: React.FC<PageProps> = () => {
   return (
     <>
       <img src={bg} alt="Logo" className="z-0 absolute" />;
-      <div className="flex flex-col text-main-font background relative">
+      <div className="flex flex-col text-main-font background relative font-lato">
         <div className="flex flex-row place-content-evenly mx-20 mt-28 font-light">
           <button
             onClick={() => {

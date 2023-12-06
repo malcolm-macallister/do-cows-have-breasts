@@ -5,10 +5,10 @@ module.exports = {
     `./src/components/**/*.{js,jsx,ts,tsx}`,
   ],
   theme: {
-    fontFamily: {
-      main: ["main", "sans-serif"],
-    },
     extend: {
+      fontFamily: {
+        lato: ["Lato", "sans-serif"],
+      },
       backgroundImage: {
         "cow-background": "url('src/images/cow-background.png')",
       },
