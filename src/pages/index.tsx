@@ -4,6 +4,11 @@ import { useState, useEffect } from "react";
 
 const IndexPage: React.FC<PageProps> = () => {
   const [answer, setAnswer] = useState<string>("yeah");
+  const [activeStylingQ1, setActiveStylingQ1] = useState<boolean>(true);
+  const [activeStylingQ2, setActiveStylingQ2] = useState<boolean>(false);
+  const [activeStylingQ3, setActiveStylingQ3] = useState<boolean>(false);
+  const [activeStylingQ4, setActiveStylingQ4] = useState<boolean>(false);
+  const [activeStylingQ5, setActiveStylingQ5] = useState<boolean>(false);
 
   return (
     <>
@@ -12,47 +17,102 @@ const IndexPage: React.FC<PageProps> = () => {
           <button
             onClick={() => {
               setAnswer("yeah");
+              setActiveStylingQ1(true);
+              setActiveStylingQ2(false);
+              setActiveStylingQ3(false);
+              setActiveStylingQ4(false);
+              setActiveStylingQ5(false);
             }}
           >
-            <div className="text-2xl hover:font-normal hover:text-3xl cursor-pointer">
-              do cows have breasts?
-            </div>
+            {activeStylingQ1 ? (
+              <div className="font-normal text-4xl cursor-pointer">
+                do cows have breasts?
+              </div>
+            ) : (
+              <div className="text-2xl hover:font-normal hover:text-3xl cursor-pointer">
+                do cows have breasts?
+              </div>
+            )}
           </button>
           <button
             onClick={() => {
               setAnswer("not really lol");
+              setActiveStylingQ1(false);
+              setActiveStylingQ2(true);
+              setActiveStylingQ3(false);
+              setActiveStylingQ4(false);
+              setActiveStylingQ5(false);
             }}
           >
-            <div className="text-2xl hover:font-normal hover:text-3xl cursor-pointer">
-              are they nice?
-            </div>
+            {activeStylingQ2 ? (
+              <div className="font-normal text-4xl cursor-pointer">
+                are they nice?
+              </div>
+            ) : (
+              <div className="text-2xl hover:font-normal hover:text-3xl cursor-pointer">
+                are they nice?
+              </div>
+            )}
           </button>
           <button
             onClick={() => {
               setAnswer("underneath the cow kinda up by their front legs");
+              setActiveStylingQ1(false);
+              setActiveStylingQ2(false);
+              setActiveStylingQ3(true);
+              setActiveStylingQ4(false);
+              setActiveStylingQ5(false);
             }}
           >
-            <div className="text-2xl hover:font-normal hover:text-3xl cursor-pointer">
-              where are they?
-            </div>
+            {activeStylingQ3 ? (
+              <div className="font-normal text-4xl cursor-pointer">
+                where are they?
+              </div>
+            ) : (
+              <div className="text-2xl hover:font-normal hover:text-3xl cursor-pointer">
+                where are they?
+              </div>
+            )}
           </button>
           <button
             onClick={() => {
               setAnswer("NO!");
+              setActiveStylingQ1(false);
+              setActiveStylingQ2(false);
+              setActiveStylingQ3(false);
+              setActiveStylingQ4(true);
+              setActiveStylingQ5(false);
             }}
           >
-            <div className="text-2xl hover:font-normal hover:text-3xl cursor-pointer">
-              does milk come out?
-            </div>
+            {activeStylingQ4 ? (
+              <div className="font-normal text-4xl cursor-pointer">
+                does milk come out?
+              </div>
+            ) : (
+              <div className="text-2xl hover:font-normal hover:text-3xl cursor-pointer">
+                does milk come out?
+              </div>
+            )}
           </button>
           <button
             onClick={() => {
               setAnswer("THE UTTER IS NOT A BREAST!");
+              setActiveStylingQ1(false);
+              setActiveStylingQ2(false);
+              setActiveStylingQ3(false);
+              setActiveStylingQ4(false);
+              setActiveStylingQ5(true);
             }}
           >
-            <div className="text-2xl hover:font-normal hover:text-3xl cursor-pointer">
-              is the utter a breast?
-            </div>
+            {activeStylingQ5 ? (
+              <div className="font-normal text-4xl cursor-pointer">
+                is the utter a breast?
+              </div>
+            ) : (
+              <div className="text-2xl hover:font-normal hover:text-3xl cursor-pointer">
+                is the utter a breast?
+              </div>
+            )}
           </button>
         </div>
 
