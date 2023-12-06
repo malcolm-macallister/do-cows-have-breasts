@@ -27,8 +27,9 @@ const IndexPage: React.FC<PageProps> = () => {
   const [activeStylingQ5, setActiveStylingQ5] = useState<boolean>(false);
 
   return (
-    <><img src={bg} alt="Logo" />;
-      <div className="flex flex-col text-main-font background">
+    <>
+      <img src={bg} alt="Logo" className="z-0 absolute" />;
+      <div className="flex flex-col text-main-font background relative">
         <div className="flex flex-row place-content-evenly mx-20 mt-28 font-light">
           <button
             onClick={() => {
