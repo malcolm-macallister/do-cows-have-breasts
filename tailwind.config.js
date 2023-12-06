@@ -9,6 +9,9 @@ module.exports = {
       main: ["main", "sans-serif"],
     },
     extend: {
+      backgroundImage: {
+        "cow-background": "url('src/images/cow-background.png')",
+      },
       colors: {
         "main-font": "#01121c",
       },

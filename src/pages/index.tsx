@@ -1,6 +1,27 @@
 import * as React from "react";
-import type { HeadFC, PageProps } from "gatsby";
+import { HeadFC, PageProps, graphql } from "gatsby";
 import { useState, useEffect } from "react";
+import Img from "gatsby-image";
+import "./index.css";
+
+/*export const query = graphql`
+  query {
+    file(relativePath: { eq: "src/images/cow-background.png" }) {
+      cowthing {
+        # Specify the image processing specifications right in the query.
+        # Makes it trivial to update as your page's design changes.
+        fixed(width: 400) {
+          base64
+          width
+          height
+          src
+          srcSet
+        }
+      }
+    }
+  }
+`;
+*/
 
 const IndexPage: React.FC<PageProps> = () => {
   const [answer, setAnswer] = useState<string>("yeah");
@@ -12,7 +33,7 @@ const IndexPage: React.FC<PageProps> = () => {
 
   return (
     <>
-      <div className="h-screen bg-[#FCF6F5] flex flex-col text-main-font">
+      <div className="flex flex-col text-main-font background">
         <div className="flex flex-row place-content-evenly mx-20 mt-28 font-light">
           <button
             onClick={() => {
