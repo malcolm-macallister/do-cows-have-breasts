@@ -32,16 +32,16 @@ const MoreCowBreastStuffPage: React.FC<PageProps> = () => {
       <div className="flex flex-col text-main-font background relative font-lato">
         <div className="text-center">
           {" "}
-          <Link to="/" className="active mx-20">
+          <Link to="/" className="active mx-20 underline">
             HOME
           </Link>
           <Link
             to="/morecowbreaststuff"
-            className="mx-20 font-extrabold text-2xl"
+            className="mx-20 font-extrabold text-2xl underline"
           >
             MORE COW BREAST STUFF
           </Link>
-          <Link to="/whatisthis" className="active mx-20">
+          <Link to="/whatisthis" className="active mx-20 underline">
             WHAT IS THIS
           </Link>
         </div>

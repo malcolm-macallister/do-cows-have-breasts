@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Img from "gatsby-image";
 import "./index.css";
 import bg from "../images/cow-background.png";
+import drawing from "../images/cow-drawing.png";
 
 /*const data = useStaticQuery(graphql`
     query {
@@ -27,25 +28,34 @@ const WhatIsThisPage: React.FC<PageProps> = () => {
       <div className="flex flex-col text-main-font background relative font-lato">
         <div className="text-center">
           {" "}
-          <Link to="/" className="active mx-20">
+          <Link to="/" className="active mx-20 underline">
             HOME
           </Link>
-          <Link to="/morecowbreaststuff" className="active mx-20">
+          <Link to="/morecowbreaststuff" className="active mx-20 underline">
             MORE COW BREAST STUFF
           </Link>
-          <Link to="/whatisthis" className="mx-20 font-extrabold text-2xl">
+          <Link
+            to="/whatisthis"
+            className="mx-20 font-extrabold text-2xl underline"
+          >
             WHAT IS THIS
           </Link>
         </div>
         <div className="flex flex-col text-center ">
           <div className="mx-20 mt-28 font-bold text-2xl">what is this?</div>
-          <div className="mt-4 text-xl">a website about cows breasts</div>
+          <div className="mt-4 text-xl">a website about cow breasts</div>
         </div>
         <div className="flex flex-col text-center ">
           <div className="mx-20 mt-20 font-bold text-2xl">
-            why did you make this?
+            why did i make this?
           </div>
           <div className="mt-4 text-xl">felt like it</div>
+        </div>
+        <div className="flex flex-col text-center ">
+          <div className="mx-20 mt-20 font-bold text-2xl">
+            is the information on this website correct & accurate?
+          </div>
+          <div className="mt-4 text-xl">yeah</div>
         </div>
         <div className="flex flex-col text-center ">
           <div className="mx-20 mt-20 font-bold text-2xl">
@@ -70,7 +80,7 @@ const WhatIsThisPage: React.FC<PageProps> = () => {
             </button>
           </div>
           {showPic === undefined ? null : showPic === true ? (
-            <div className="mt-12 text-xl">show</div>
+            <img src={drawing} alt="Logo" className="z-0 absolute" />
           ) : (
             <div className="mt-12 text-xl">alright</div>
           )}
