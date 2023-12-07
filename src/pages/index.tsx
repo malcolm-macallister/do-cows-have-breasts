@@ -3,7 +3,7 @@ import { HeadFC, Link, PageProps, graphql, useStaticQuery } from "gatsby";
 import { useState, useEffect } from "react";
 import Img from "gatsby-image";
 import "./index.css";
-import bg from "../images/cow-background.png";
+import bg from "../images/cow-background8.png";
 import drawing from "../images/cow-drawing.png";
 
 /*const data = useStaticQuery(graphql`
@@ -44,7 +44,7 @@ const IndexPage: React.FC<PageProps> = () => {
             WHAT IS THIS
           </Link>
         </div>
-        <div className="flex flex-row place-content-evenly mx-20 mt-28 font-light">
+        <div className="flex flex-row place-content-evenly mx-20 mt-32 font-light">
           <button
             onClick={() => {
               setAnswer("yeah");
@@ -154,7 +154,17 @@ const IndexPage: React.FC<PageProps> = () => {
         <div className="flex">
           <div className="m-auto">
             {showPic ? (
-              <img src={drawing} alt="Logo" className="z-0 mt-20 w-[90vw]" />
+              <>
+                <div className="text-center mt-20 font-bold text-lg">
+                  the breasts are - in the pic below - where the rightmost arrow
+                  of the "Breasts???" section is
+                </div>
+                <img
+                  src={drawing}
+                  alt="Logo"
+                  className="z-0 mt-6 w-[90vw] mb-4"
+                />
+              </>
             ) : (
               <div className="text-9xl mt-40 mx-20 text-center">{answer}</div>
             )}

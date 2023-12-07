@@ -3,8 +3,9 @@ import { HeadFC, Link, PageProps, graphql, useStaticQuery } from "gatsby";
 import { useState, useEffect } from "react";
 import Img from "gatsby-image";
 import "./index.css";
-import bg from "../images/cow-background.png";
+import bg from "../images/cow-background8.png";
 import drawing from "../images/cow-drawing.png";
+import mypic from "../images/mypic.jpg";
 
 /*const data = useStaticQuery(graphql`
     query {
@@ -80,7 +81,43 @@ const WhatIsThisPage: React.FC<PageProps> = () => {
             </button>
           </div>
           {showPic === undefined ? null : showPic === true ? (
-            <img src={drawing} alt="Logo" className="z-0 absolute" />
+            <>
+              <img
+                src={mypic}
+                alt="Logo"
+                className="z-0 w-[400px] mx-auto mt-12"
+              />{" "}
+              <div className="flex flex-col text-center ">
+                <div className="mx-40 mt-20 font-bold text-2xl">
+                  do you think that's an okay pic to use? i have 5 other pics on
+                  my profile, this isn't the best one but i still like it. my ex
+                  took the pic
+                </div>
+                <div className="mt-8 mb-8 text-xl flex-row">
+                  <button
+                    className="mx-20 bg-amber-100 hover:bg-green-600 font-semibold hover:text-white py-2 px-4 border border-blue-900 hover:border-transparent rounded"
+                    onClick={() => {
+                      setShowPic(true);
+                    }}
+                  >
+                    yea okay pic
+                  </button>
+                  <button
+                    className="mx-20 bg-amber-100 hover:bg-red-600 font-semibold hover:text-white py-2 px-4 border border-blue-900 hover:border-transparent rounded"
+                    onClick={() => {
+                      setShowPic(false);
+                    }}
+                  >
+                    no not that good
+                  </button>
+                </div>
+                {showPic === undefined ? null : showPic === true ? (
+                  <></>
+                ) : (
+                  <div className="mt-12 text-xl"></div>
+                )}
+              </div>
+            </>
           ) : (
             <div className="mt-12 text-xl">alright</div>
           )}

@@ -3,7 +3,7 @@ import { HeadFC, Link, PageProps, graphql, useStaticQuery } from "gatsby";
 import { useState, useEffect } from "react";
 import Img from "gatsby-image";
 import "./index.css";
-import bg from "../images/cow-background.png";
+import bg from "../images/cow-background8.png";
 
 /*const data = useStaticQuery(graphql`
     query {
