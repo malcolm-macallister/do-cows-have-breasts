@@ -18,7 +18,7 @@ import bg from "../images/cow-background.png";
   `);
 */
 
-const IndexPage: React.FC<PageProps> = () => {
+const WhatIsThisPage: React.FC<PageProps> = () => {
   const [answer, setAnswer] = useState<string>("yeah");
   const [activeStylingQ1, setActiveStylingQ1] = useState<boolean>(true);
   const [activeStylingQ2, setActiveStylingQ2] = useState<boolean>(false);
@@ -32,13 +32,13 @@ const IndexPage: React.FC<PageProps> = () => {
       <div className="flex flex-col text-main-font background relative font-lato">
         <div className="text-center">
           {" "}
-          <Link to="" className="mx-20 font-extrabold text-2xl">
+          <Link to="/" className="active mx-20">
             HOME
           </Link>
           <Link to="/morecowbreaststuff" className="active mx-20">
             MORE COW BREAST STUFF
           </Link>
-          <Link to="/whatisthis" className="active mx-20">
+          <Link to="/whatisthis" className="mx-20 font-extrabold text-2xl">
             WHAT IS THIS
           </Link>
         </div>
@@ -155,7 +155,7 @@ const IndexPage: React.FC<PageProps> = () => {
   );
 };
 
-export default IndexPage;
+export default WhatIsThisPage;
 
 export const Head: HeadFC = () => (
   <>
