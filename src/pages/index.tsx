@@ -30,6 +30,11 @@ const IndexPage: React.FC<PageProps> = () => {
     <>
       <img src={bg} alt="Logo" className="z-0 absolute" />;
       <div className="flex flex-col text-main-font background relative font-lato">
+        <div className="text-center">
+          <button className="mx-20">HOME</button>
+          <button className="mx-20">MORE COW BREAST STUFF</button>
+          <button className="mx-20">WHAT IS THIS</button>
+        </div>
         <div className="flex flex-row place-content-evenly mx-20 mt-28 font-light">
           <button
             onClick={() => {
