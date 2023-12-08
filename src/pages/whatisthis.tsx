@@ -7,6 +7,29 @@ import bg from "../images/cow-background8.png";
 import drawing from "../images/cow-drawing.png";
 import mypic from "../images/mypic.jpg";
 
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyC8U2tVv0aJy9A0diRsaBL2aTkaq5h1E3A",
+  authDomain: "dchb-fab65.firebaseapp.com",
+  databaseURL: "https://dchb-fab65-default-rtdb.firebaseio.com",
+  projectId: "dchb-fab65",
+  storageBucket: "dchb-fab65.appspot.com",
+  messagingSenderId: "749661034776",
+  appId: "1:749661034776:web:1da9e4aee61060b7af266d",
+  measurementId: "G-GSHE8850WQ"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
 /*const data = useStaticQuery(graphql`
     query {
       test: file(relativePath: { eq: "src/images/cow-background.png" }) {
