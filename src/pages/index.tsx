@@ -157,13 +157,16 @@ const IndexPage: React.FC<PageProps> = () => {
               <>
                 <div className="text-center mt-20 font-bold text-lg">
                   the breasts are - in the pic below - where the rightmost arrow
-                  of the "Breasts???" section is
+                  of the "Breasts???" section is pointing to
                 </div>
                 <img
                   src={drawing}
                   alt="Logo"
                   className="z-0 mt-6 w-[80vw] mb-4"
                 />
+                <div className="text-center mt-2 mb-8 font-bold text-lg">
+                  i drew that pic while in the mountains
+                </div>
               </>
             ) : (
               <div className="text-9xl mt-40 mx-20 text-center">{answer}</div>
