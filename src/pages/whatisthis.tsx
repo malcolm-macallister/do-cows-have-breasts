@@ -10,25 +10,11 @@ import mypic from "../images/mypic.jpg";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { getDatabase, onValue, ref, set, get, child } from "firebase/database";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyC8U2tVv0aJy9A0diRsaBL2aTkaq5h1E3A",
-  authDomain: "dchb-fab65.firebaseapp.com",
-  databaseURL: "https://dchb-fab65-default-rtdb.firebaseio.com",
-  projectId: "dchb-fab65",
-  storageBucket: "dchb-fab65.appspot.com",
-  messagingSenderId: "749661034776",
-  appId: "1:749661034776:web:1da9e4aee61060b7af266d",
-  measurementId: "G-GSHE8850WQ"
-};
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+
+
 
 /*const data = useStaticQuery(graphql`
     query {
@@ -44,7 +30,72 @@ const analytics = getAnalytics(app);
 */
 
 const WhatIsThisPage: React.FC<PageProps> = () => {
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyC8U2tVv0aJy9A0diRsaBL2aTkaq5h1E3A",
+    authDomain: "dchb-fab65.firebaseapp.com",
+    databaseURL: "https://dchb-fab65-default-rtdb.firebaseio.com",
+    projectId: "dchb-fab65",
+    storageBucket: "dchb-fab65.appspot.com",
+    messagingSenderId: "749661034776",
+    appId: "1:749661034776:web:1da9e4aee61060b7af266d",
+    measurementId: "G-GSHE8850WQ"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const database = getDatabase(app);
+
   const [showPic, setShowPic] = useState<boolean>();
+
+  const yesVote = () => {
+    const db = getDatabase();
+
+    const dbRef = ref(getDatabase());
+    get(child(dbRef, `yesVotes/`)).then((snapshot) => {
+      if (snapshot.exists()) {
+        console.log(snapshot.val());
+        let newYesNum = snapshot.val().yesVotes;
+        newYesNum++;
+        console.log(newYesNum)
+
+        set(ref(db, 'yesVotes/'), {
+          yesVotes: newYesNum,
+        });
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+  };
+
+  const noVote = () => {
+    const db = getDatabase();
+
+    const dbRef = ref(getDatabase());
+    get(child(dbRef, `noVotes/`)).then((snapshot) => {
+      if (snapshot.exists()) {
+        console.log(snapshot.val());
+        let newNoNum = snapshot.val().noVotes;
+        newNoNum++;
+        console.log(newNoNum)
+
+        set(ref(db, 'noVotes/'), {
+          noVotes: newNoNum,
+        });
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+  };
 
   return (
     <>
@@ -120,7 +171,7 @@ const WhatIsThisPage: React.FC<PageProps> = () => {
                   <button
                     className="mx-20 bg-amber-100 hover:bg-green-600 font-semibold hover:text-white py-2 px-4 border border-blue-900 hover:border-transparent rounded"
                     onClick={() => {
-                      setShowPic(true);
+                      yesVote();
                     }}
                   >
                     yea okay pic
@@ -128,7 +179,7 @@ const WhatIsThisPage: React.FC<PageProps> = () => {
                   <button
                     className="mx-20 bg-amber-100 hover:bg-red-600 font-semibold hover:text-white py-2 px-4 border border-blue-900 hover:border-transparent rounded"
                     onClick={() => {
-                      setShowPic(false);
+                      noVote();
                     }}
                   >
                     no not that good
