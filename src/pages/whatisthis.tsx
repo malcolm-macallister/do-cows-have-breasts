@@ -3,7 +3,9 @@ import { HeadFC, Link, PageProps, graphql, useStaticQuery } from "gatsby";
 import { useState, useEffect } from "react";
 import Img from "gatsby-image";
 import "./index.css";
-import bg from "../images/cow-background.png";
+import bg from "../images/cow-background8.png";
+import drawing from "../images/cow-drawing.png";
+import mypic from "../images/mypic.jpg";
 
 /*const data = useStaticQuery(graphql`
     query {
@@ -19,12 +21,7 @@ import bg from "../images/cow-background.png";
 */
 
 const WhatIsThisPage: React.FC<PageProps> = () => {
-  const [answer, setAnswer] = useState<string>("yeah");
-  const [activeStylingQ1, setActiveStylingQ1] = useState<boolean>(true);
-  const [activeStylingQ2, setActiveStylingQ2] = useState<boolean>(false);
-  const [activeStylingQ3, setActiveStylingQ3] = useState<boolean>(false);
-  const [activeStylingQ4, setActiveStylingQ4] = useState<boolean>(false);
-  const [activeStylingQ5, setActiveStylingQ5] = useState<boolean>(false);
+  const [showPic, setShowPic] = useState<boolean>();
 
   return (
     <>
@@ -32,123 +29,98 @@ const WhatIsThisPage: React.FC<PageProps> = () => {
       <div className="flex flex-col text-main-font background relative font-lato">
         <div className="text-center">
           {" "}
-          <Link to="/" className="active mx-20">
+          <Link to="/" className="active mx-20 underline">
             HOME
           </Link>
-          <Link to="/morecowbreaststuff" className="active mx-20">
+          <Link to="/morecowbreaststuff" className="active mx-20 underline">
             MORE COW BREAST STUFF
           </Link>
-          <Link to="/whatisthis" className="mx-20 font-extrabold text-2xl">
+          <Link
+            to="/whatisthis"
+            className="mx-20 font-extrabold text-2xl underline"
+          >
             WHAT IS THIS
           </Link>
         </div>
-        <div className="flex flex-row place-content-evenly mx-20 mt-28 font-light">
-          <button
-            onClick={() => {
-              setAnswer("yeah");
-              setActiveStylingQ1(true);
-              setActiveStylingQ2(false);
-              setActiveStylingQ3(false);
-              setActiveStylingQ4(false);
-              setActiveStylingQ5(false);
-            }}
-          >
-            {activeStylingQ1 ? (
-              <div className="font-normal text-4xl cursor-pointer">
-                do cows have breasts?
-              </div>
-            ) : (
-              <div className="text-2xl hover:font-normal hover:text-3xl cursor-pointer">
-                do cows have breasts?
-              </div>
-            )}
-          </button>
-          <button
-            onClick={() => {
-              setAnswer("not really lol");
-              setActiveStylingQ1(false);
-              setActiveStylingQ2(true);
-              setActiveStylingQ3(false);
-              setActiveStylingQ4(false);
-              setActiveStylingQ5(false);
-            }}
-          >
-            {activeStylingQ2 ? (
-              <div className="font-normal text-4xl cursor-pointer">
-                are they nice?
-              </div>
-            ) : (
-              <div className="text-2xl hover:font-normal hover:text-3xl cursor-pointer">
-                are they nice?
-              </div>
-            )}
-          </button>
-          <button
-            onClick={() => {
-              setAnswer("underneath the cow kinda up by their front legs");
-              setActiveStylingQ1(false);
-              setActiveStylingQ2(false);
-              setActiveStylingQ3(true);
-              setActiveStylingQ4(false);
-              setActiveStylingQ5(false);
-            }}
-          >
-            {activeStylingQ3 ? (
-              <div className="font-normal text-4xl cursor-pointer">
-                where are they?
-              </div>
-            ) : (
-              <div className="text-2xl hover:font-normal hover:text-3xl cursor-pointer">
-                where are they?
-              </div>
-            )}
-          </button>
-          <button
-            onClick={() => {
-              setAnswer("NO!");
-              setActiveStylingQ1(false);
-              setActiveStylingQ2(false);
-              setActiveStylingQ3(false);
-              setActiveStylingQ4(true);
-              setActiveStylingQ5(false);
-            }}
-          >
-            {activeStylingQ4 ? (
-              <div className="font-normal text-4xl cursor-pointer">
-                does milk come out?
-              </div>
-            ) : (
-              <div className="text-2xl hover:font-normal hover:text-3xl cursor-pointer">
-                does milk come out?
-              </div>
-            )}
-          </button>
-          <button
-            onClick={() => {
-              setAnswer("THE UTTER IS NOT A BREAST!");
-              setActiveStylingQ1(false);
-              setActiveStylingQ2(false);
-              setActiveStylingQ3(false);
-              setActiveStylingQ4(false);
-              setActiveStylingQ5(true);
-            }}
-          >
-            {activeStylingQ5 ? (
-              <div className="font-normal text-4xl cursor-pointer">
-                is the utter a breast?
-              </div>
-            ) : (
-              <div className="text-2xl hover:font-normal hover:text-3xl cursor-pointer">
-                is the utter a breast?
-              </div>
-            )}
-          </button>
+        <div className="flex flex-col text-center ">
+          <div className="mx-20 mt-28 font-bold text-2xl">what is this?</div>
+          <div className="mt-4 text-xl">a website about cow breasts</div>
         </div>
-
-        <div className="flex">
-          <div className="m-auto">
-            <div className="text-9xl mt-40 mx-20 text-center">{answer}</div>
+        <div className="flex flex-col text-center ">
+          <div className="mx-20 mt-20 font-bold text-2xl">
+            why did i make this?
           </div>
+          <div className="mt-4 text-xl">felt like it</div>
+        </div>
+        <div className="flex flex-col text-center ">
+          <div className="mx-20 mt-20 font-bold text-2xl">
+            is the information on this website correct & accurate?
+          </div>
+          <div className="mt-4 text-xl">yeah</div>
+        </div>
+        <div className="flex flex-col text-center ">
+          <div className="mx-20 mt-20 font-bold text-2xl">
+            do you wanna see a pic of me i use on tinder?
+          </div>
+          <div className="mt-8 text-xl flex-row">
+            <button
+              className="mx-20 bg-amber-100 hover:bg-green-600 font-semibold hover:text-white py-2 px-4 border border-blue-900 hover:border-transparent rounded"
+              onClick={() => {
+                setShowPic(true);
+              }}
+            >
+              yea
+            </button>
+            <button
+              className="mx-20 bg-amber-100 hover:bg-red-600 font-semibold hover:text-white py-2 px-4 border border-blue-900 hover:border-transparent rounded"
+              onClick={() => {
+                setShowPic(false);
+              }}
+            >
+              no
+            </button>
+          </div>
+          {showPic === undefined ? null : showPic === true ? (
+            <>
+              <img
+                src={mypic}
+                alt="Logo"
+                className="z-0 w-[400px] mx-auto mt-12"
+              />{" "}
+              <div className="flex flex-col text-center ">
+                <div className="mx-40 mt-20 font-bold text-2xl">
+                  do you think that's an okay pic to use? i have 5 other pics on
+                  my profile, this isn't the best one but i still like it. my ex
+                  took the pic
+                </div>
+                <div className="mt-8 mb-8 text-xl flex-row">
+                  <button
+                    className="mx-20 bg-amber-100 hover:bg-green-600 font-semibold hover:text-white py-2 px-4 border border-blue-900 hover:border-transparent rounded"
+                    onClick={() => {
+                      setShowPic(true);
+                    }}
+                  >
+                    yea okay pic
+                  </button>
+                  <button
+                    className="mx-20 bg-amber-100 hover:bg-red-600 font-semibold hover:text-white py-2 px-4 border border-blue-900 hover:border-transparent rounded"
+                    onClick={() => {
+                      setShowPic(false);
+                    }}
+                  >
+                    no not that good
+                  </button>
+                </div>
+                {showPic === undefined ? null : showPic === true ? (
+                  <></>
+                ) : (
+                  <div className="mt-12 text-xl"></div>
+                )}
+              </div>
+            </>
+          ) : (
+            <div className="mt-12 text-xl">alright</div>
+          )}
         </div>
       </div>
     </>
