@@ -48,25 +48,39 @@ const WhatIsThisPage: React.FC<PageProps> = () => {
   const database = getDatabase(app);
 
   const [showPic, setShowPic] = useState<boolean>();
+  const [noPercentage, setNoPercentage] = useState<number>();
+  const [yesPercentage, setYesPercentage] = useState<number>();
 
   const yesVote = () => {
     const db = getDatabase();
 
     const dbRef = ref(getDatabase());
-    get(child(dbRef, `yesVotes/`))
-      .then((snapshot) => {
-        if (snapshot.exists()) {
-          console.log(snapshot.val());
-          let newYesNum = snapshot.val().yesVotes;
-          newYesNum++;
-          console.log(newYesNum);
+    get(child(dbRef, `noVotes/`))
+      .then((snapshotNo) => {
+        get(child(dbRef, `yesVotes/`)).then((snapshotYes) => {
+          if (snapshotYes.exists()) {
+            console.log(snapshotYes.val());
+            let newYesNum = snapshotYes.val().yesVotes;
+            newYesNum++;
+            console.log(newYesNum);
 
-          set(ref(db, "yesVotes/"), {
-            yesVotes: newYesNum,
-          });
-        } else {
-          console.log("No data available");
-        }
+            let noNum = snapshotNo.val().noVotes;
+
+            if (noNum > newYesNum) {
+              setYesPercentage((newYesNum / noNum) * 100);
+            } else if (newYesNum > noNum) {
+              setYesPercentage((noNum / newYesNum) * 100);
+            } else {
+              setYesPercentage(50);
+            }
+
+            set(ref(db, "yesVotes/"), {
+              yesVotes: newYesNum,
+            });
+          } else {
+            console.log("No data available");
+          }
+        });
       })
       .catch((error) => {
         console.error(error);
@@ -77,20 +91,32 @@ const WhatIsThisPage: React.FC<PageProps> = () => {
     const db = getDatabase();
 
     const dbRef = ref(getDatabase());
-    get(child(dbRef, `noVotes/`))
-      .then((snapshot) => {
-        if (snapshot.exists()) {
-          console.log(snapshot.val());
-          let newNoNum = snapshot.val().noVotes;
-          newNoNum++;
-          console.log(newNoNum);
+    get(child(dbRef, `yesVotes/`))
+      .then((snapshotYes) => {
+        get(child(dbRef, `noVotes/`)).then((snapshotNo) => {
+          if (snapshotNo.exists()) {
+            console.log(snapshotNo.val());
+            let newNoNum = snapshotNo.val().noVotes;
+            newNoNum++;
+            console.log(newNoNum);
 
-          set(ref(db, "noVotes/"), {
-            noVotes: newNoNum,
-          });
-        } else {
-          console.log("No data available");
-        }
+            let yesNum = snapshotYes.val().yesVotes;
+
+            if (yesNum > newNoNum) {
+              setNoPercentage((newNoNum / yesNum) * 100);
+            } else if (newNoNum > yesNum) {
+              setNoPercentage((yesNum / newNoNum) * 100);
+            } else {
+              setNoPercentage(50);
+            }
+
+            set(ref(db, "noVotes/"), {
+              noVotes: newNoNum,
+            });
+          } else {
+            console.log("No data available");
+          }
+        });
       })
       .catch((error) => {
         console.error(error);
@@ -176,6 +202,11 @@ const WhatIsThisPage: React.FC<PageProps> = () => {
                   >
                     yea okay pic
                   </button>
+                  {yesPercentage === undefined ? null : (
+                    <div className="mt-12 text-green-600 flex-col">
+                      {yesPercentage}% of people who voted agree with you
+                    </div>
+                  )}
                   <button
                     className="mx-20 bg-amber-100 hover:bg-red-600 font-semibold hover:text-white py-2 px-4 border border-blue-900 hover:border-transparent rounded"
                     onClick={() => {
@@ -184,6 +215,11 @@ const WhatIsThisPage: React.FC<PageProps> = () => {
                   >
                     no not that good
                   </button>
+                  {noPercentage === undefined ? null : (
+                    <div className="mt-12 text-red-600">
+                      {noPercentage}% of people who voted agree with you
+                    </div>
+                  )}
                 </div>
                 {showPic === undefined ? null : showPic === true ? (
                   <></>
