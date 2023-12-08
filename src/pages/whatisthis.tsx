@@ -12,10 +12,6 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getDatabase, onValue, ref, set, get, child } from "firebase/database";
 
-
-
-
-
 /*const data = useStaticQuery(graphql`
     query {
       test: file(relativePath: { eq: "src/images/cow-background.png" }) {
@@ -43,7 +39,7 @@ const WhatIsThisPage: React.FC<PageProps> = () => {
     storageBucket: "dchb-fab65.appspot.com",
     messagingSenderId: "749661034776",
     appId: "1:749661034776:web:1da9e4aee61060b7af266d",
-    measurementId: "G-GSHE8850WQ"
+    measurementId: "G-GSHE8850WQ",
   };
 
   // Initialize Firebase
@@ -57,44 +53,48 @@ const WhatIsThisPage: React.FC<PageProps> = () => {
     const db = getDatabase();
 
     const dbRef = ref(getDatabase());
-    get(child(dbRef, `yesVotes/`)).then((snapshot) => {
-      if (snapshot.exists()) {
-        console.log(snapshot.val());
-        let newYesNum = snapshot.val().yesVotes;
-        newYesNum++;
-        console.log(newYesNum)
+    get(child(dbRef, `yesVotes/`))
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          console.log(snapshot.val());
+          let newYesNum = snapshot.val().yesVotes;
+          newYesNum++;
+          console.log(newYesNum);
 
-        set(ref(db, 'yesVotes/'), {
-          yesVotes: newYesNum,
-        });
-      } else {
-        console.log("No data available");
-      }
-    }).catch((error) => {
-      console.error(error);
-    });
+          set(ref(db, "yesVotes/"), {
+            yesVotes: newYesNum,
+          });
+        } else {
+          console.log("No data available");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   const noVote = () => {
     const db = getDatabase();
 
     const dbRef = ref(getDatabase());
-    get(child(dbRef, `noVotes/`)).then((snapshot) => {
-      if (snapshot.exists()) {
-        console.log(snapshot.val());
-        let newNoNum = snapshot.val().noVotes;
-        newNoNum++;
-        console.log(newNoNum)
+    get(child(dbRef, `noVotes/`))
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          console.log(snapshot.val());
+          let newNoNum = snapshot.val().noVotes;
+          newNoNum++;
+          console.log(newNoNum);
 
-        set(ref(db, 'noVotes/'), {
-          noVotes: newNoNum,
-        });
-      } else {
-        console.log("No data available");
-      }
-    }).catch((error) => {
-      console.error(error);
-    });
+          set(ref(db, "noVotes/"), {
+            noVotes: newNoNum,
+          });
+        } else {
+          console.log("No data available");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (
