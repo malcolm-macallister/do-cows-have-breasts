@@ -162,7 +162,7 @@ const IndexPage: React.FC<PageProps> = () => {
                 <img
                   src={drawing}
                   alt="Logo"
-                  className="z-0 mt-6 w-[90vw] mb-4"
+                  className="z-0 mt-6 w-[80vw] mb-4"
                 />
               </>
             ) : (
