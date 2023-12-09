@@ -50,6 +50,8 @@ const WhatIsThisPage: React.FC<PageProps> = () => {
   const [showPic, setShowPic] = useState<boolean>();
   const [noPercentage, setNoPercentage] = useState<number>();
   const [yesPercentage, setYesPercentage] = useState<number>();
+  const [noPercentageString, setNoPercentageString] = useState<string>();
+  const [yesPercentageString, setYesPercentageString] = useState<string>();
 
   const yesVote = () => {
     const db = getDatabase();
@@ -67,9 +69,16 @@ const WhatIsThisPage: React.FC<PageProps> = () => {
             let noNum = snapshotNo.val().noVotes;
 
             if (noNum > newYesNum) {
-              setYesPercentage((newYesNum / noNum) * 100);
+              let fullPercent = ((noNum / newYesNum) * 100);
+              const slicedPercent = Number(fullPercent!.toString().slice(0, 2))
+
+              setYesPercentage(slicedPercent);
             } else if (newYesNum > noNum) {
-              setYesPercentage((noNum / newYesNum) * 100);
+              let fullPercent = ((noNum / newYesNum) * 100);
+              const slicedPercent = Number(fullPercent!.toString().slice(0, 2))
+
+              setYesPercentage(slicedPercent);
+
             } else {
               setYesPercentage(50);
             }
@@ -103,9 +112,15 @@ const WhatIsThisPage: React.FC<PageProps> = () => {
             let yesNum = snapshotYes.val().yesVotes;
 
             if (yesNum > newNoNum) {
-              setNoPercentage((newNoNum / yesNum) * 100);
+              let fullPercent = ((yesNum / newNoNum) * 100);
+              const slicedPercent = Number(fullPercent!.toString().slice(0, 2))
+
+              setNoPercentage(slicedPercent);
             } else if (newNoNum > yesNum) {
-              setNoPercentage((yesNum / newNoNum) * 100);
+              let fullPercent = ((yesNum / newNoNum) * 100);
+              const slicedPercent = Number(fullPercent!.toString().slice(0, 2))
+
+              setNoPercentage(slicedPercent);
             } else {
               setNoPercentage(50);
             }
@@ -202,11 +217,7 @@ const WhatIsThisPage: React.FC<PageProps> = () => {
                   >
                     yea okay pic
                   </button>
-                  {yesPercentage === undefined ? null : (
-                    <div className="mt-12 text-green-600 flex-col">
-                      {yesPercentage}% of people who voted agree with you
-                    </div>
-                  )}
+
                   <button
                     className="mx-20 bg-amber-100 hover:bg-red-600 font-semibold hover:text-white py-2 px-4 border border-blue-900 hover:border-transparent rounded"
                     onClick={() => {
@@ -215,6 +226,11 @@ const WhatIsThisPage: React.FC<PageProps> = () => {
                   >
                     no not that good
                   </button>
+                  {yesPercentage === undefined ? null : (
+                    <div className="mt-12 text-green-600 flex-col">
+                      {yesPercentage}% of people who voted agree with you
+                    </div>
+                  )}
                   {noPercentage === undefined ? null : (
                     <div className="mt-12 text-red-600">
                       {noPercentage}% of people who voted agree with you
