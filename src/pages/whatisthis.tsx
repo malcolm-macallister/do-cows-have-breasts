@@ -69,16 +69,17 @@ const WhatIsThisPage: React.FC<PageProps> = () => {
             let noNum = snapshotNo.val().noVotes;
 
             if (noNum > newYesNum) {
-              let fullPercent = ((noNum / newYesNum) * 100);
-              const slicedPercent = Number(fullPercent!.toString().slice(0, 2))
+              let fullPercent = (newYesNum / noNum) * 100;
+              const slicedPercent = Number(fullPercent!.toString().slice(0, 2));
 
               setYesPercentage(slicedPercent);
             } else if (newYesNum > noNum) {
-              let fullPercent = ((noNum / newYesNum) * 100);
-              const slicedPercent = Number(fullPercent!.toString().slice(0, 2))
+              console.log("sup");
+              console.log(noNum + "  " + newYesNum);
+              let fullPercent = (noNum / newYesNum) * 100;
+              const slicedPercent = Number(fullPercent!.toString().slice(0, 2));
 
               setYesPercentage(slicedPercent);
-
             } else {
               setYesPercentage(50);
             }
@@ -112,13 +113,13 @@ const WhatIsThisPage: React.FC<PageProps> = () => {
             let yesNum = snapshotYes.val().yesVotes;
 
             if (yesNum > newNoNum) {
-              let fullPercent = ((yesNum / newNoNum) * 100);
-              const slicedPercent = Number(fullPercent!.toString().slice(0, 2))
+              let fullPercent = (newNoNum / yesNum) * 100;
+              const slicedPercent = Number(fullPercent!.toString().slice(0, 2));
 
               setNoPercentage(slicedPercent);
             } else if (newNoNum > yesNum) {
-              let fullPercent = ((yesNum / newNoNum) * 100);
-              const slicedPercent = Number(fullPercent!.toString().slice(0, 2))
+              let fullPercent = (yesNum / newNoNum) * 100;
+              const slicedPercent = Number(fullPercent!.toString().slice(0, 2));
 
               setNoPercentage(slicedPercent);
             } else {
