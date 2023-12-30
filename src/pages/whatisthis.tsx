@@ -176,6 +176,12 @@ const WhatIsThisPage: React.FC<PageProps> = () => {
         </div>
         <div className="flex flex-col text-center ">
           <div className="mx-20 mt-20 font-bold text-2xl">
+            do you vape?
+          </div>
+          <div className="mt-4 text-xl">yea</div>
+        </div>
+        <div className="flex flex-col text-center ">
+          <div className="mx-20 mt-20 font-bold text-2xl">
             do you wanna see a pic of me i use on tinder?
           </div>
           <div className="mt-8 text-xl flex-row">

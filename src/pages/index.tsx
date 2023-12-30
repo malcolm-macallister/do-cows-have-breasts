@@ -31,16 +31,16 @@ const IndexPage: React.FC<PageProps> = () => {
   return (
     <>
       <img src={bg} alt="Logo" className="z-0 absolute" />;
-      <div className="flex flex-col text-main-font background relative font-lato">
-        <div className="text-center">
+      <div className="sm:flex sm:flex-col  text-main-font background relative font-lato">
+        <div className="text-center sm:flex-col sm:flex">
           {" "}
-          <Link to="" className="mx-20 font-extrabold text-2xl underline">
+          <Link to="" className="lg:mx-20 font-extrabold lg:text-2xl sm:text-xs underline sm:mx-6">
             HOME
           </Link>
-          <Link to="/morecowbreaststuff" className="active mx-20 underline">
+          <Link to="/morecowbreaststuff" className="lg:mx-20 font-extrabold lg:text-2xl sm:text-xs underline sm:mx-6">
             MORE COW BREAST STUFF
           </Link>
-          <Link to="/whatisthis" className="active mx-20 underline">
+          <Link to="/whatisthis" className="lg:mx-20 font-extrabold lg:text-2xl sm:text-xs underline sm:mx-6">
             WHAT IS THIS
           </Link>
         </div>
