@@ -5,7 +5,7 @@ import Img from "gatsby-image";
 import "./index.css";
 import bg from "../images/cow-background8.png";
 import drawing from "../images/cow-drawing.png";
-import mypic from "../images/mypic.jpg";
+import mypic from "../images/mypic.png";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
