@@ -130,7 +130,7 @@ const IndexPage: React.FC<PageProps> = () => {
           </button>
           <button
             onClick={() => {
-              setAnswer("THE UTTER IS NOT A BREAST!");
+              setAnswer("yeah");
               setShowPic(false);
               setActiveStylingQ1(false);
               setActiveStylingQ2(false);

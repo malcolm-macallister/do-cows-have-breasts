@@ -54,89 +54,101 @@ const WhatIsThisPage: React.FC<PageProps> = () => {
   const [yesPercentageString, setYesPercentageString] = useState<string>();
 
   const yesVote = () => {
-    const db = getDatabase();
+    if (typeof window !== `undefined`) {
+      const db = getDatabase();
 
-    const dbRef = ref(getDatabase());
-    get(child(dbRef, `noVotes/`))
-      .then((snapshotNo) => {
-        get(child(dbRef, `yesVotes/`)).then((snapshotYes) => {
-          if (snapshotYes.exists()) {
-            console.log(snapshotYes.val());
-            let newYesNum = snapshotYes.val().yesVotes;
-            newYesNum++;
-            console.log(newYesNum);
+      const dbRef = ref(getDatabase());
+      get(child(dbRef, `noVotes/`))
+        .then((snapshotNo) => {
+          get(child(dbRef, `yesVotes/`)).then((snapshotYes) => {
+            if (snapshotYes.exists()) {
+              console.log(snapshotYes.val());
+              let newYesNum = snapshotYes.val().yesVotes;
+              newYesNum++;
+              console.log(newYesNum);
 
-            let noNum = snapshotNo.val().noVotes;
+              let noNum = snapshotNo.val().noVotes;
 
-            if (noNum > newYesNum) {
-              let fullPercent = (newYesNum / noNum) * 100;
-              const slicedPercent = Number(fullPercent!.toString().slice(0, 2));
+              if (noNum > newYesNum) {
+                let fullPercent = (newYesNum / noNum) * 100;
+                const slicedPercent = Number(
+                  fullPercent!.toString().slice(0, 2)
+                );
 
-              setYesPercentage(slicedPercent);
-            } else if (newYesNum > noNum) {
-              console.log("sup");
-              console.log(noNum + "  " + newYesNum);
-              let fullPercent = (noNum / newYesNum) * 100;
-              const slicedPercent = Number(fullPercent!.toString().slice(0, 2));
+                setYesPercentage(slicedPercent);
+              } else if (newYesNum > noNum) {
+                console.log("sup");
+                console.log(noNum + "  " + newYesNum);
+                let fullPercent = (noNum / newYesNum) * 100;
+                const slicedPercent = Number(
+                  fullPercent!.toString().slice(0, 2)
+                );
 
-              setYesPercentage(slicedPercent);
+                setYesPercentage(slicedPercent);
+              } else {
+                setYesPercentage(50);
+              }
+
+              set(ref(db, "yesVotes/"), {
+                yesVotes: newYesNum,
+              });
             } else {
-              setYesPercentage(50);
+              console.log("No data available");
             }
-
-            set(ref(db, "yesVotes/"), {
-              yesVotes: newYesNum,
-            });
-          } else {
-            console.log("No data available");
-          }
+          });
+        })
+        .catch((error) => {
+          console.error(error);
         });
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    }
   };
 
   const noVote = () => {
-    const db = getDatabase();
+    if (typeof window !== `undefined`) {
+      const db = getDatabase();
 
-    const dbRef = ref(getDatabase());
-    get(child(dbRef, `yesVotes/`))
-      .then((snapshotYes) => {
-        get(child(dbRef, `noVotes/`)).then((snapshotNo) => {
-          if (snapshotNo.exists()) {
-            console.log(snapshotNo.val());
-            let newNoNum = snapshotNo.val().noVotes;
-            newNoNum++;
-            console.log(newNoNum);
+      const dbRef = ref(getDatabase());
+      get(child(dbRef, `yesVotes/`))
+        .then((snapshotYes) => {
+          get(child(dbRef, `noVotes/`)).then((snapshotNo) => {
+            if (snapshotNo.exists()) {
+              console.log(snapshotNo.val());
+              let newNoNum = snapshotNo.val().noVotes;
+              newNoNum++;
+              console.log(newNoNum);
 
-            let yesNum = snapshotYes.val().yesVotes;
+              let yesNum = snapshotYes.val().yesVotes;
 
-            if (yesNum > newNoNum) {
-              let fullPercent = (newNoNum / yesNum) * 100;
-              const slicedPercent = Number(fullPercent!.toString().slice(0, 2));
+              if (yesNum > newNoNum) {
+                let fullPercent = (newNoNum / yesNum) * 100;
+                const slicedPercent = Number(
+                  fullPercent!.toString().slice(0, 2)
+                );
 
-              setNoPercentage(slicedPercent);
-            } else if (newNoNum > yesNum) {
-              let fullPercent = (yesNum / newNoNum) * 100;
-              const slicedPercent = Number(fullPercent!.toString().slice(0, 2));
+                setNoPercentage(slicedPercent);
+              } else if (newNoNum > yesNum) {
+                let fullPercent = (yesNum / newNoNum) * 100;
+                const slicedPercent = Number(
+                  fullPercent!.toString().slice(0, 2)
+                );
 
-              setNoPercentage(slicedPercent);
+                setNoPercentage(slicedPercent);
+              } else {
+                setNoPercentage(50);
+              }
+
+              set(ref(db, "noVotes/"), {
+                noVotes: newNoNum,
+              });
             } else {
-              setNoPercentage(50);
+              console.log("No data available");
             }
-
-            set(ref(db, "noVotes/"), {
-              noVotes: newNoNum,
-            });
-          } else {
-            console.log("No data available");
-          }
+          });
+        })
+        .catch((error) => {
+          console.error(error);
         });
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    }
   };
 
   return (
